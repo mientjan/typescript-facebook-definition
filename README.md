@@ -1,8 +1,7 @@
 Social Definition
 =================
 
-A collection of typescript definition files for all social sdk's. And qwhen no sdk is provided will write one our self.
-
+A collection of typescript definition files for all the popular social networks and there sdk's. 
 Completed
 ========
 * [Facebook SDK](http://developers.facebook.com/docs/reference/javascript/)
