@@ -93,7 +93,6 @@ declare interface FB {
 		 */
 		subscribe ( name: string, cb: (response: string ) => any );
 
-		
 		/**
 		 * name: 'comment.create'
 		 */
@@ -143,7 +142,9 @@ declare interface FB {
 		setAutoGrow(onOrOff?:bool,interval?:number);
 
 		setDoneLoading(cb: (response: { time_delta_ms?: number; }) => void);
-		setSize(size: { width: number; height: number; });
+
+		setSize(size: { width?: number; height?: number; });
+
 		setUrlHandler(cb: (response: { path: string; }) => void );
 		
 		startTimer();
