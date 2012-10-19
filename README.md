@@ -1,20 +1,9 @@
-Social Definition
+typescript-facebook-definition
 =================
 
-A collection of typescript definition files for all the popular social networks and there sdk's. 
-Completed
-========
-* [Facebook SDK](http://developers.facebook.com/docs/reference/javascript/)
-
-TODO
-========
-* Linked
-* Twitter?
-* Flicker
-* Instagram
-* Pinterest?
-* Pinterest?
+Definition file for the facebook sdk.
+[Facebook SDK](http://developers.facebook.com/docs/reference/javascript/)
 
 License
 =================
-[MIT License](https://github.com/mientjan/social-definition/blob/master/license.txt)
+[MIT License](https://github.com/mientjan/typescript-facebook-definition/blob/master/license.txt)
