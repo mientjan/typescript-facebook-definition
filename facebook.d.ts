@@ -3,7 +3,7 @@
 definition file of the js Facebook SDK
 
 author: [Mient-jan Stelling](http://www.github.com/mientjan)
-license: [MIT License](https://github.com/mientjan/social-definition/blob/master/license.txt)
+license: [MIT License](https://github.com/mientjan/typescript-facebook-definition/blob/master/license.txt)
 
 */
 
