@@ -19,8 +19,16 @@ interface FacebookAuthResponse {
 	accessToken: string;	// Access token of the user 
 }
 
+interface FacebookUIParameters {
+	method?: string;
+	name?: string;
+	link?: string;
+	picture?: string;
+	caption?: string;
+	description?: string;
+}
 
-declare interface FB {
+interface FB {
 
 	init(options:{
 		appId?: string;					// Your application ID. Default null
@@ -34,29 +42,27 @@ declare interface FB {
 		hideFlashCallback?: Object;		// see Custom Flash Hide Callback	Optional	null
 	}): void;
 
-	api(path: string);
-	api(path: string, cb: (response?: any) =>void );
-	api(path: string, method: string, cb: (response?: any) =>void );
-	api(path: string, method: string, params: Object, cb: (response?: any) =>void );
+	api(path: string):void;
+	api(path: string, params: Object):void;
+	api(path: string, cb: Function ):void;
+	api(path: string, params: Object, cb: Function ):void;
+	api(path: string, method: string, cb: Function ):void;
+	api(path: string, method: string, params: Object, cb: Function ):void;
 
-	ui(params: {
-		method?: string;
-		name?: string;
-		link?: string;
-		picture?: string;
-		caption?: string;
-		description?: string;
-	}, cb: (response?:Object) => void): void;
+	ui(params: FacebookUIParameters, cb?: (response:Object) => any): void;
 
-	login( cb: (response?: FacebookUserAuthenticate) => any, opts?: { scope: string; } ): void;
+	login( 
+		cb?: (response: FacebookUserAuthenticate) => any, 
+		opts?: { scope: string; } 
+	): void;
 
 	// FB.logout will log the user out of both your site and Facebook. 
 	//	You will need to have a valid access token for the user in order to call the function.
-	logout(cb:(response?:Object) => any );
+	logout(cb?:(response?:Object) => any );
 
 
-	getLoginStatus(cb:(response:FacebookUserAuthenticate) => void, force?:bool);
-	getAuthResponse(cb:(response:FacebookAuthResponse) => void );
+	getLoginStatus(cb?:(response:FacebookUserAuthenticate) => void, force?:bool);
+	getAuthResponse(cb?:(response:FacebookAuthResponse) => void );
 
 	Events: {
 		
@@ -151,3 +157,5 @@ declare interface FB {
 		stopTimer(cb: (response: { time_delta_ms: number; }) => void );
 	};
 };
+
+declare var FB: FB;
