@@ -10,10 +10,17 @@ FB.login(function (response) {
 	response.status
 });
 
-FB.login(function (response) {
-	response.status
-}, { scope: '' });
+FB.login(function (response) { });
 
 FB.logout();
 
-FB.ui({caption:'asddsa'}, function () { });
+FB.ui({ caption: '' }, function () { });
+
+FB.Canvas.getPageInfo(function (info) { 
+	info.clientHeight;
+});
+
+
+FB.Canvas.getPageInfo(function (info) { 
+	info.clientHeight;
+});

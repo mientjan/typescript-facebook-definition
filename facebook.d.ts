@@ -49,7 +49,7 @@ interface FB {
 	api(path: string, method: string, cb: Function ):void;
 	api(path: string, method: string, params: Object, cb: Function ):void;
 
-	ui(params: FacebookUIParameters, cb?: (response:Object) => any): void;
+	ui(params?: FacebookUIParameters, cb?: Function):void;
 
 	login( 
 		cb?: (response: FacebookUserAuthenticate) => any, 
@@ -60,8 +60,9 @@ interface FB {
 	//	You will need to have a valid access token for the user in order to call the function.
 	logout(cb?:(response?:Object) => any );
 
-	getLoginStatus(cb?:(response:FacebookUserAuthenticate) => void, force?:bool);
-	getAuthResponse(cb?:(response:FacebookAuthResponse) => void );
+	getLoginStatus(
+		cb?:(response:FacebookUserAuthenticate) => void, force?:bool):void;
+	getAuthResponse(cb?:(response:FacebookAuthResponse) => void ):void;
 
 	Events: {
 		
