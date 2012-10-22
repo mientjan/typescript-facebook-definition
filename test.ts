@@ -1,6 +1,5 @@
 /// <reference path="facebook.d.ts" />
 
-// ('/me', 'POST', {}, function (response) {});
 FB.api('/me');
 FB.api('asd', {});
 FB.api('asd', function (response) {});

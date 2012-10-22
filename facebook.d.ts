@@ -3,7 +3,7 @@
 definition file of the js Facebook SDK
 
 author: [Mient-jan Stelling](http://www.github.com/mientjan)
-license: [MIT License](https://github.com/mientjan/social-definition/blob/master/license.txt)
+license: [MIT License](https://github.com/mientjan/typescript-facebook-definition/blob/master/license.txt)
 
 */
 
@@ -13,10 +13,10 @@ interface FacebookUserAuthenticate {
 }
 
 interface FacebookAuthResponse {
-	userID: string;         // String representing the current user's ID 
-	signedRequest: string;  // String with the current signedRequest 
-	expiresIn: string;		// UNIX time when the session expires
-	accessToken: string;	// Access token of the user 
+	userID: string;         		// String representing the current user's ID 
+	signedRequest: string;  		// String with the current signedRequest 
+	expiresIn: string;			// UNIX time when the session expires
+	accessToken: string;			// Access token of the user 
 }
 
 interface FacebookUIParameters {
@@ -31,15 +31,15 @@ interface FacebookUIParameters {
 interface FB {
 
 	init(options:{
-		appId?: string;					// Your application ID. Default null
-		cookie?:bool;					// true to enable cookie support. false
-		logging?: bool;					// false to disable logging.Optional	true
-		status?: bool;					// true to fetch fresh status.Optional	true
-		xfbml?: bool;					// true to parse XFBML tags.Optional	false
-		channelUrl?: string;			// Specifies the URL of a custom URL channel file.This file must contain a single script element pointing to the JavaScript SDK URL.Optional	null
-		authResponse?: Object;			// Manually set the object retrievable from getAuthResponse.Optional	true
+		appId?: string;			// Your application ID. Default null
+		cookie?:bool;			// true to enable cookie support. false
+		logging?: bool;			// false to disable logging.Optional	true
+		status?: bool;			// true to fetch fresh status.Optional	true
+		xfbml?: bool;			// true to parse XFBML tags.Optional	false
+		channelUrl?: string;		// Specifies the URL of a custom URL channel file.This file must contain a single script element pointing to the JavaScript SDK URL.Optional	null
+		authResponse?: Object;		// Manually set the object retrievable from getAuthResponse.Optional	true
 		frictionlessRequests?: bool;	//  see Frictionless Requests	Optional	false
-		hideFlashCallback?: Object;		// see Custom Flash Hide Callback	Optional	null
+		hideFlashCallback?: Object;	// see Custom Flash Hide Callback	Optional	null
 	}): void;
 
 	api(path: string):void;
@@ -59,7 +59,6 @@ interface FB {
 	// FB.logout will log the user out of both your site and Facebook. 
 	//	You will need to have a valid access token for the user in order to call the function.
 	logout(cb?:(response?:Object) => any );
-
 
 	getLoginStatus(cb?:(response:FacebookUserAuthenticate) => void, force?:bool);
 	getAuthResponse(cb?:(response:FacebookAuthResponse) => void );
@@ -133,10 +132,10 @@ interface FB {
 		getPageInfo(cb: (info: {
 			clientHeight: number;	// The height of the viewport in pixels
 			clientWidth: number;	// The width of the viewport in pixels
-			offsetLeft: number;		// The number of pixels between the left edge of the viewport and the left edge of your app's iframe
-			offsetTop: number;		// The number of pixels between the top edge of the viewport and the top edge of your app's iframe
-			scrollLeft: number;		// The number of pixels between the left edge of your iframe and the left edge of your iframe's viewport
-			scrollTop: number;		// The number of pixels between the top edge of your iframe and the top edge of your iframe's viewport
+			offsetLeft: number;	// The number of pixels between the left edge of the viewport and the left edge of your app's iframe
+			offsetTop: number;	// The number of pixels between the top edge of the viewport and the top edge of your app's iframe
+			scrollLeft: number;	// The number of pixels between the left edge of your iframe and the left edge of your iframe's viewport
+			scrollTop: number;	// The number of pixels between the top edge of your iframe and the top edge of your iframe's viewport
 		}) => void ): void;
 
 		hideFlashElement(elem:Element): void;
