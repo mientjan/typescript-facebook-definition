@@ -7,19 +7,19 @@ license: [MIT License](https://github.com/mientjan/typescript-facebook-definitio
 
 */
 
-interface FacebookUserAuthenticate {
+interface FBUserAuthenticate {
 	status: string;				// Current status of the session
-	authResponse?: FacebookAuthResponse;
+	authResponse?: FBAuthResponse;
 }
 
-interface FacebookAuthResponse {
+interface FBAuthResponse {
 	userID: string;         		// String representing the current user's ID 
 	signedRequest: string;  		// String with the current signedRequest 
 	expiresIn: string;			// UNIX time when the session expires
 	accessToken: string;			// Access token of the user 
 }
 
-interface FacebookUIParameters {
+interface FBUIParameters {
 	method?: string;
 	name?: string;
 	link?: string;
@@ -28,31 +28,37 @@ interface FacebookUIParameters {
 	description?: string;
 }
 
+
+interface FBInitParameters {
+	appId?: string;			// Your application ID. Default null
+	cookie?:bool;			// true to enable cookie support. false
+	logging?: bool;			// false to disable logging.Optional	true
+	status?: bool;			// true to fetch fresh status.Optional	true
+	xfbml?: bool;			// true to parse XFBML tags.Optional	false
+	channelUrl?: string;		// Specifies the URL of a custom URL channel file.This file must contain a single script element pointing to the JavaScript SDK URL.Optional	null
+	authResponse?: Object;		// Manually set the object retrievable from getAuthResponse.Optional	true
+	frictionlessRequests?: bool;	//  see Frictionless Requests	Optional	false
+	hideFlashCallback?: Object;	// see Custom Flash Hide Callback	Optional	null
+}
+
 interface FB {
 
-	init(options:{
-		appId?: string;			// Your application ID. Default null
-		cookie?:bool;			// true to enable cookie support. false
-		logging?: bool;			// false to disable logging.Optional	true
-		status?: bool;			// true to fetch fresh status.Optional	true
-		xfbml?: bool;			// true to parse XFBML tags.Optional	false
-		channelUrl?: string;		// Specifies the URL of a custom URL channel file.This file must contain a single script element pointing to the JavaScript SDK URL.Optional	null
-		authResponse?: Object;		// Manually set the object retrievable from getAuthResponse.Optional	true
-		frictionlessRequests?: bool;	//  see Frictionless Requests	Optional	false
-		hideFlashCallback?: Object;	// see Custom Flash Hide Callback	Optional	null
-	}): void;
+	init(options:FBInitParameters): void;
 
 	api(path: string):void;
 	api(path: string, params: Object):void;
-	api(path: string, cb: Function ):void;
-	api(path: string, params: Object, cb: Function ):void;
-	api(path: string, method: string, cb: Function ):void;
-	api(path: string, method: string, params: Object, cb: Function ):void;
+	api(path: string, cb: (response?:any) => any ):void;
+	api(path: string, params: Object, cb: (response?:any) => any ):void;
+	api(path: string, method: string, cb: (response?:any) => any ):void;
+	api(path: string, method: string, params: Object, cb: (response?:any) => any ):void;
 
-	ui(params?: FacebookUIParameters, cb?: Function):void;
+	ui(
+		params?: FBUIParameters, 
+		cb?: (response?: any ) => void
+	):void;
 
 	login( 
-		cb?: (response: FacebookUserAuthenticate) => any, 
+		cb?: (response: FBUserAuthenticate) => any, 
 		opts?: { scope: string; } 
 	): void;
 
@@ -61,8 +67,11 @@ interface FB {
 	logout(cb?:(response?:Object) => any );
 
 	getLoginStatus(
-		cb?:(response:FacebookUserAuthenticate) => void, force?:bool):void;
-	getAuthResponse(cb?:(response:FacebookAuthResponse) => void ):void;
+		cb?:(response:FBUserAuthenticate) => void, 
+		force?:bool
+	):void;
+
+	getAuthResponse(cb?:(response:FBAuthResponse) => void ):void;
 
 	Events: {
 		
@@ -77,7 +86,7 @@ interface FB {
 		 * name: 'auth.authResponseChange' - fired when the authResponse changes
 		 * name: 'auth.statusChange' - fired when the status changes (see FB.getLoginStatus for additional information on what this means)
 		 */
-		subscribe ( name: string, cb: (response: FacebookUserAuthenticate) => any );
+		subscribe ( name: string, cb: (response: FBUserAuthenticate) => any );
 
 		/**
 		 * name: 'auth.logout'
