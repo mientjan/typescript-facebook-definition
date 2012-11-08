@@ -39,6 +39,11 @@ interface FBUIParameters {
 }
 
 
+interface FBApiResponse {
+
+}
+
+
 interface FBInitParameters {
 	// Your application ID.
 	appId?: string;	// default null	
@@ -93,10 +98,10 @@ interface FB {
 
 	api(path: string):void;
 	api(path: string, params: Object):void;
-	api(path: string, cb: (response?:any) => any ):void;
-	api(path: string, params: Object, cb: (response?:any) => any ):void;
-	api(path: string, method: string, cb: (response?:any) => any ):void;
-	api(path: string, method: string, params: Object, cb: (response?:any) => any ):void;
+	api(path: string, cb: (response?:any) => void ):void;
+	api(path: string, params: Object, cb: (response?:any) => void ):void;
+	api(path: string, method: string, cb: (response?:any) => void ):void;
+	api(path: string, method: string, params: Object, cb: (response?:any) => void ):void;
 
 	ui(
 		params?: FBUIParameters, 
