@@ -126,7 +126,7 @@ interface FB {
 
 	getAuthResponse(cb?:(response:FBAuthResponse) => void ):void;
 
-	Events: {
+	Event: {
 		
 		/**
 		 * FB.Events.subscribe
