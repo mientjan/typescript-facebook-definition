@@ -1,4 +1,4 @@
-typescript-facebook-definition
+typescript-facebook-definition (beta)
 =================
 
 Definition file for the facebook sdk.
