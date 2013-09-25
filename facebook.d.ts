@@ -17,7 +17,7 @@ interface FBAPIMoviesResponseData {
 
 // api(/me/movies)
 interface FBAPIMoviesResponse {
-	data: IFacebookAPIMoviesResponseData[];
+	data: FBAPIMoviesResponseData[];
 	paging:{
 		next:string;
 	};
@@ -69,7 +69,7 @@ interface FBAPIMusicListensResponseData {
 
 // api(/me/music.listens)
 interface FBAPIMusicListensResponse {
-	data:IFacebookAPIMusicListensResponseData[];
+	data:FBAPIMusicListensResponseData[];
 
 	paging:{
 		next: string;
@@ -274,22 +274,15 @@ interface FB {
 		subscribe ( name: string, cb: (response: { status: string; }) => any );
 
 		/**
-		 * name: 'auth.prompt'
-		 */
-		subscribe ( name: string, cb: (response: string) => any );
-
-		/**
 		 * name: 'xfbml.render'
 		 */
 		subscribe ( name: string, cb: () => any );
 
 		/**
 		 * name: 'edge.remove'
-		 */
-		subscribe ( name: string, cb: (response: string ) => any );
-
-		/**
 		 * name: 'comment.create'
+		 * name: 'auth.prompt'
+		 * name: 'message.send'
 		 */
 		subscribe ( name: string, cb: (response: string ) => any );
 
@@ -297,11 +290,6 @@ interface FB {
 		 * name: 'comment.remove'
 		 */
 		subscribe(name: string, cb: (response: { href: string; commendID: string; } ) => any );
-
-		/**
-		 * name: 'message.send'
-		 */
-		subscribe ( name: string, cb: (response: string ) => any );
 
 		/**
 		 * @see http://developers.facebook.com/docs/reference/javascript/FB.Event.unsubscribe/
