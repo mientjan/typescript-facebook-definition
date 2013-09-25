@@ -8,7 +8,7 @@ license: [MIT License](https://github.com/mientjan/typescript-facebook-definitio
 */
 
 
-export interface IFacebookAPIMoviesResponseData {
+interface FBAPIMoviesResponseData {
 	category:string;
 	created_time: string;
 	id:string;
@@ -16,7 +16,7 @@ export interface IFacebookAPIMoviesResponseData {
 }
 
 // api(/me/movies)
-export interface IFacebookAPIMoviesResponse {
+interface FBAPIMoviesResponse {
 	data: IFacebookAPIMoviesResponseData[];
 	paging:{
 		next:string;
@@ -24,7 +24,7 @@ export interface IFacebookAPIMoviesResponse {
 }
 ;
 
-export interface IFacebookAPIMusicListensResponseData {
+interface FBAPIMusicListensResponseData {
 	id: string;
 	from: {
 		name: string;
@@ -68,7 +68,7 @@ export interface IFacebookAPIMusicListensResponseData {
 ;
 
 // api(/me/music.listens)
-export interface IFacebookAPIMusicListensResponse {
+interface FBAPIMusicListensResponse {
 	data:IFacebookAPIMusicListensResponseData[];
 
 	paging:{
@@ -78,7 +78,7 @@ export interface IFacebookAPIMusicListensResponse {
 }
 
 // api(/me)
-export interface IFacebookAPIUserResponse {
+export interface FBAPIUserResponse {
 	id: string;
 	name: string;
 	first_name: string;
