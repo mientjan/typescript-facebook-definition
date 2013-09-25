@@ -8,7 +8,7 @@ license: [MIT License](https://github.com/mientjan/typescript-facebook-definitio
 */
 
 
-interface FBAPIMoviesResponseData {
+interface IFacebookAPIMoviesResponseData {
 	category:string;
 	created_time: string;
 	id:string;
@@ -16,15 +16,15 @@ interface FBAPIMoviesResponseData {
 }
 
 // api(/me/movies)
-interface FBAPIMoviesResponse {
-	data: FBAPIMoviesResponseData[];
+interface IFacebookAPIMoviesResponse {
+	data: IFacebookAPIMoviesResponseData[];
 	paging:{
 		next:string;
 	};
 }
 ;
 
-interface FBAPIMusicListensResponseData {
+interface IFacebookAPIMusicListensResponseData {
 	id: string;
 	from: {
 		name: string;
@@ -68,8 +68,8 @@ interface FBAPIMusicListensResponseData {
 ;
 
 // api(/me/music.listens)
-interface FBAPIMusicListensResponse {
-	data:FBAPIMusicListensResponseData[];
+interface IFacebookAPIMusicListensResponse {
+	data:IFacebookAPIMusicListensResponseData[];
 
 	paging:{
 		next: string;
@@ -78,7 +78,7 @@ interface FBAPIMusicListensResponse {
 }
 
 // api(/me)
-export interface FBAPIUserResponse {
+export interface IFacebookAPIUserResponse {
 	id: string;
 	name: string;
 	first_name: string;
@@ -132,14 +132,14 @@ export interface FBAPIUserResponse {
 	updated_time: string;
 }
 
-interface FBUserAuthenticate {
+interface IFacebookUserAuthenticate {
 	// Current status of the session
 	status: string;	// connected or not_authorized
 	
 	authResponse?: FBAuthResponse;
 }
 
-interface FBAuthResponse {
+interface IFacebookAuthResponse {
 
 	// String representing the current user's ID 
 	userID: string;
@@ -154,7 +154,7 @@ interface FBAuthResponse {
 	accessToken: string;
 }
 
-interface FBUIParameters {
+interface IFacebookUIParameters {
 	method?: string;
 	name?: string;
 	link?: string;
@@ -164,12 +164,12 @@ interface FBUIParameters {
 }
 
 
-interface FBApiResponse {
+interface IFacebookApiResponse {
 
 }
 
 
-interface FBInitParameters {
+interface IFacebookInitParameters {
 	// Your application ID.
 	appId?: string;	// default null	
 
@@ -217,9 +217,9 @@ interface FBInitParameters {
 	}) => {};	
 }
 
-interface FB {
+interface IFacebook {
 
-	init(options:FBInitParameters): void;
+	init(options:IFacebookInitParameters): void;
 
 	api(path: string):void;
 	api(path: string, params: Object):void;
@@ -229,12 +229,12 @@ interface FB {
 	api(path: string, method: string, params: Object, cb: (response?:any) => void ):void;
 
 	ui(
-		params?: FBUIParameters, 
+		params?: IFacebookUIParameters, 
 		cb?: (response?: any ) => void
 	):void;
 
 	login( 
-		cb?: (response: FBUserAuthenticate) => any, 
+		cb?: (response: IFacebookUserAuthenticate) => any, 
 		opts?: { scope: string; } 
 	): void;
 
@@ -243,13 +243,13 @@ interface FB {
 	logout(cb?:(response?:Object) => any );
 
 	getLoginStatus(
-		cb?:(response:FBUserAuthenticate) => void, 
+		cb?:(response:IFacebookUserAuthenticate) => void, 
 
 		// Access token of the user 
 		force?:bool
 	):void;
 
-	getAuthResponse(cb?:(response:FBAuthResponse) => void ):void;
+	getAuthResponse(cb?:(response:IFacebookAuthResponse) => void ):void;
 
 	Event: {
 		
@@ -266,7 +266,7 @@ interface FB {
 		 * name: 'auth.authResponseChange' - fired when the authResponse changes
 		 * name: 'auth.statusChange' - fired when the status changes (see FB.getLoginStatus for additional information on what this means)
 		 */
-		subscribe ( name: string, cb: (response: FBUserAuthenticate) => any );
+		subscribe ( name: string, cb: (response: IFacebookUserAuthenticate) => any );
 
 		/**
 		 * name: 'auth.logout'
@@ -355,4 +355,4 @@ interface FB {
 	};
 };
 
-declare var FB: FB;
+declare var FB: IFacebook;
