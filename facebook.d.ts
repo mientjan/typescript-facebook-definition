@@ -7,6 +7,131 @@ license: [MIT License](https://github.com/mientjan/typescript-facebook-definitio
 
 */
 
+
+export interface IFacebookAPIMoviesResponseData {
+	category:string;
+	created_time: string;
+	id:string;
+	name:string;
+}
+
+// api(/me/movies)
+export interface IFacebookAPIMoviesResponse {
+	data: IFacebookAPIMoviesResponseData[];
+	paging:{
+		next:string;
+	};
+}
+;
+
+export interface IFacebookAPIMusicListensResponseData {
+	id: string;
+	from: {
+		name: string;
+		id: string;
+	};
+	start_time: string;
+	end_time: string;
+	publish_time: string;
+	application: {
+		name: string;
+		namespace: string;
+		id: string;
+	};
+	data: {
+		song: {
+			id: string;
+			url: string;
+			type: string;
+			title: string;
+		};
+		album: {
+			id: string;
+			url: string;
+			type: string;
+			title: string;
+		};
+	};
+	type: string; // music.listens
+	no_feed_story: bool;
+	likes: {
+		count: number;
+		can_like: bool;
+		user_likes: bool;
+	};
+	comments: {
+		count: number;
+		can_comment: bool;
+		comment_order: string; // chronological
+	};
+}
+;
+
+// api(/me/music.listens)
+export interface IFacebookAPIMusicListensResponse {
+	data:IFacebookAPIMusicListensResponseData[];
+
+	paging:{
+		next: string;
+	};
+
+}
+
+// api(/me)
+export interface IFacebookAPIUserResponse {
+	id: string;
+	name: string;
+	first_name: string;
+	last_name: string;
+	link: string;
+	username: string;
+	location: {
+		id: string;
+		name: string;
+	};
+	work: {
+		employer: {
+			id: string;
+			name: string;
+		};
+		position: {
+			id: string;
+			name:  string;
+		};
+		start_date: string;
+		end_date: string;
+
+		projects: {
+			id: string;
+			name: string;
+			start_date: string;
+			end_date: string;
+		}[];
+
+	}[];
+
+	education: {
+		school: {
+			id: string;
+			name: string;
+		};
+
+		type: string;
+	}[];
+
+	gender: string;
+	timezone: number;
+	locale: string;
+
+	languages: {
+		id: string;
+		name: string;
+	}[];
+
+	verified: bool;
+	updated_time: string;
+}
+
 interface FBUserAuthenticate {
 	// Current status of the session
 	status: string;	// connected or not_authorized
