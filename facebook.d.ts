@@ -136,7 +136,7 @@ interface IFacebookUserAuthenticate {
 	// Current status of the session
 	status: string;	// connected or not_authorized
 	
-	authResponse?: FBAuthResponse;
+	authResponse?: IFacebookAuthResponse;
 }
 
 interface IFacebookAuthResponse {
