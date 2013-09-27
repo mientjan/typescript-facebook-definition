@@ -67,6 +67,59 @@ interface IFacebookAPIMusicListensResponseData {
 }
 ;
 
+// when getting a single song by a id
+interface IFacebookAPIMusicSong {
+	id: string;
+	url: string;
+	type: string;
+	title: string;
+	image: {
+		url: string;
+		width: number;
+		height: number;
+	}[];
+
+	audio:{
+		url: string;
+		type: string;
+	}[];
+
+	description: string;
+	site_name: string;
+	data: {
+		duration: number;
+		album:
+			{
+				url: {
+					url: string;
+					id: string;
+					type: string;
+					title: string;
+				};
+
+				track: number;
+			}[];
+
+		musician:
+			{
+				url: string;
+				id: string;
+				type: string;
+				name: string;
+			}[];
+		release_date: string;
+		genre: string;
+	};
+	updated_time: string;
+	created_time: string;
+	application: {
+		id: string;
+		name: string;
+		url: string;
+	};
+	is_scraped: bool;
+}
+
 // api(/me/music.listens)
 interface IFacebookAPIMusicListensResponse {
 	data:IFacebookAPIMusicListensResponseData[];
