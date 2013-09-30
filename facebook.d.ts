@@ -131,7 +131,7 @@ interface IFacebookAPIMusicListensResponse {
 }
 
 // api(/me)
-export interface IFacebookAPIUserResponse {
+interface IFacebookAPIUserResponse {
 	id: string;
 	name: string;
 	first_name: string;
