@@ -22,7 +22,6 @@ interface IFacebookAPIMoviesResponse {
 		next:string;
 	};
 }
-;
 
 interface IFacebookAPIMusicListensResponseData {
 	id: string;
@@ -53,19 +52,18 @@ interface IFacebookAPIMusicListensResponseData {
 		};
 	};
 	type: string; // music.listens
-	no_feed_story: bool;
+	no_feed_story: boolean;
 	likes: {
 		count: number;
-		can_like: bool;
-		user_likes: bool;
+		can_like: boolean;
+		user_likes: boolean;
 	};
 	comments: {
 		count: number;
-		can_comment: bool;
+		can_comment: boolean;
 		comment_order: string; // chronological
 	};
 }
-;
 
 // when getting a single song by a id
 interface IFacebookAPIMusicSong {
@@ -117,7 +115,7 @@ interface IFacebookAPIMusicSong {
 		name: string;
 		url: string;
 	};
-	is_scraped: bool;
+	is_scraped: boolean;
 }
 
 // api(/me/music.listens)
@@ -181,29 +179,29 @@ interface IFacebookAPIUserResponse {
 		name: string;
 	}[];
 
-	verified: bool;
+	verified: boolean;
 	updated_time: string;
 }
 
 interface IFacebookUserAuthenticate {
 	// Current status of the session
-	status: string;	// connected or not_authorized
-	
+	status: string; // connected or not_authorized
+
 	authResponse?: IFacebookAuthResponse;
 }
 
 interface IFacebookAuthResponse {
 
-	// String representing the current user's ID 
+	// String representing the current user's ID
 	userID: string;
-	
-	// String with the current signedRequest     		
+
+	// String with the current signedRequest
 	signedRequest: string;
-	
-	// UNIX time when the session expires	
+
+	// UNIX time when the session expires
 	expiresIn: string;
 
-	// Access token of the user 
+	// Access token of the user
 	accessToken: string;
 }
 
@@ -224,50 +222,50 @@ interface IFacebookApiResponse {
 
 interface IFacebookInitParameters {
 	// Your application ID.
-	appId?: string;	// default null	
+	appId?: string; // default null
 
 	// true to enable cookie support.
-	cookie?:bool; // default false			
+	cookie?:boolean; // default false
 
 	// false to disable logging.
-	logging?: bool;	// default true			
-	
+	logging?: boolean; // default true
+
 	// true to fetch fresh status.
-	status?: bool; // default true
-	
+	status?: boolean; // default true
+
 	// true to parse XFBML tags.
-	xfbml?: bool; // default false
-	
-	// Specifies the URL of a custom URL channel file. This file must contain a single 
+	xfbml?: boolean; // default false
+
+	// Specifies the URL of a custom URL channel file. This file must contain a single
 	// script element pointing to the JavaScript SDK URL.
 	channelUrl?: string; // default true
 
 	// Manually set the object retrievable from getAuthResponse.
 	authResponse?: Object; // default true
-	
-	/**
-	 * Frictionless Requests enable users to send Requests to specific friends from within 
-	 * an app without having to click on a pop-up confirmation dialog. Upon sending a Request 
-	 * to a friend from within an app, a user may authorize the app to send subsequent Requests 
-	 * to the same friend without a Dialog prompt. This removes a Dialog from the flow and 
-	 * streamlines the process of sharing with friends.
-	 * 
-	 * @see http://developers.facebook.com/docs/reference/dialogs/requests/#frictionless_requests
-	 */
-	frictionlessRequests?: bool; // default false
 
 	/**
-	 * Developers who wish to provide a custom hide and display experience may pass a 
-	 * JavaScript function in the hideFlashCallback option for FB.init. This function 
-	 * will be executed whenever the Flash object is hidden or displayed due to user 
-	 * behavior (clicking on a Notification, etc.) and can be used by a developer to 
-	 * take the appropriate actions: hiding or displaying their Flash object. It receives 
+	 * Frictionless Requests enable users to send Requests to specific friends from within
+	 * an app without having to click on a pop-up confirmation dialog. Upon sending a Request
+	 * to a friend from within an app, a user may authorize the app to send subsequent Requests
+	 * to the same friend without a Dialog prompt. This removes a Dialog from the flow and
+	 * streamlines the process of sharing with friends.
+	 *
+	 * @see http://developers.facebook.com/docs/reference/dialogs/requests/#frictionless_requests
+	 */
+	frictionlessRequests?: boolean; // default false
+
+	/**
+	 * Developers who wish to provide a custom hide and display experience may pass a
+	 * JavaScript function in the hideFlashCallback option for FB.init. This function
+	 * will be executed whenever the Flash object is hidden or displayed due to user
+	 * behavior (clicking on a Notification, etc.) and can be used by a developer to
+	 * take the appropriate actions: hiding or displaying their Flash object. It receives
 	 * a parameter of type object that contains two properties
 	 */
-	hideFlashCallback?: (params: { 
+	hideFlashCallback?: (params: {
 		state: string; // 'opened' or 'closed'
-		elem: HTMLElement; 
-	}) => {};	
+		elem: HTMLElement;
+	}) => {};
 }
 
 interface IFacebook {
@@ -282,35 +280,35 @@ interface IFacebook {
 	api(path: string, method: string, params: Object, cb: (response?:any) => void ):void;
 
 	ui(
-		params?: IFacebookUIParameters, 
+		params?: IFacebookUIParameters,
 		cb?: (response?: any ) => void
 	):void;
 
-	login( 
-		cb?: (response: IFacebookUserAuthenticate) => any, 
-		opts?: { scope: string; } 
+	login(
+		cb?: (response: IFacebookUserAuthenticate) => any,
+		opts?: { scope: string; }
 	): void;
 
-	// FB.logout will log the user out of both your site and Facebook. 
+	// FB.logout will log the user out of both your site and Facebook.
 	// You will need to have a valid access token for the user in order to call the function.
 	logout(cb?:(response?:Object) => any );
 
 	getLoginStatus(
-		cb?:(response:IFacebookUserAuthenticate) => void, 
+		cb?:(response:IFacebookUserAuthenticate) => void,
 
-		// Access token of the user 
-		force?:bool
+		// Access token of the user
+		force?:boolean
 	):void;
 
 	getAuthResponse(cb?:(response:IFacebookAuthResponse) => void ):void;
 
 	Event: {
-		
+
 		/**
 		 * FB.Events.subscribe
-		 * 
+		 *
 		 * subscribe gives different response objects depending on the subscribed event.
-		 * 
+		 *
 		 * @see http://developers.facebook.com/docs/reference/javascript/FB.Event.subscribe/
 		 */
 
@@ -366,25 +364,25 @@ interface IFacebook {
 		getPageInfo(cb: (info: {
 
 			// The height of the viewport in pixels
-			clientHeight: number;	
+			clientHeight: number;
 
 			// The width of the viewport in pixels
-			clientWidth: number;	
+			clientWidth: number;
 
-			// The number of pixels between the left edge of the viewport and 
+			// The number of pixels between the left edge of the viewport and
 			// the left edge of your app's iframe
 			offsetLeft: number;
 
-			// The number of pixels between the top edge of the viewport and 
+			// The number of pixels between the top edge of the viewport and
 			// the top edge of your app's iframe
 			offsetTop: number;
 
-			// The number of pixels between the left edge of your iframe and 
+			// The number of pixels between the left edge of your iframe and
 			// the left edge of your iframe's viewport
 			scrollLeft: number;
-			
-			// The number of pixels between the top edge of your iframe and 
-			// the top edge of your iframe's viewport	
+
+			// The number of pixels between the top edge of your iframe and
+			// the top edge of your iframe's viewport
 			scrollTop: number;
 
 		}) => void ): void;
@@ -395,17 +393,17 @@ interface IFacebook {
 		scrollTo(x: number, y: number): void;
 
 		setAutoGrow(interval:number);
-		setAutoGrow(onOrOff?:bool,interval?:number);
+		setAutoGrow(onOrOff?:boolean,interval?:number);
 
 		setDoneLoading(cb: (response: { time_delta_ms?: number; }) => void);
 
 		setSize(size: { width?: number; height?: number; });
 
 		setUrlHandler(cb: (response: { path: string; }) => void );
-		
+
 		startTimer();
 		stopTimer(cb: (response: { time_delta_ms: number; }) => void );
 	};
-};
+}
 
 declare var FB: IFacebook;
